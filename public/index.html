@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Derrière le Masque</title>
+    <style>
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; text-align: center; padding: 50px; }
+        h1 { color: #d4af37; font-size: 3em; text-transform: uppercase; letter-spacing: 2px; }
+        .container { background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; display: inline-block; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); max-width: 800px; }
+        select, input { margin: 10px; padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #2c2c2c; color: white; }
+        button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
+        button:hover { background-color: #f1c40f; transform: scale(1.05); }
+        a { text-decoration: none; }
+        .testimonials { margin-top: 50px; display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
+        .testi-card { flex: 1; min-width: 200px; background: #333; padding: 20px; border-radius: 10px; border: 1px solid #d4af37; font-size: 0.85em; text-align: left; }
+        .stars { color: #d4af37; font-size: 1.2em; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Derrière le Masque</h1>
+        <p><i>L'analyse psychologique qui révèle votre véritable nature.</i></p>
+        <hr style="border: 0; border-top: 1px solid #d4af37; margin: 20px 0;">
+        
+        <form action="paiement.html">
+            <p>Dites-nous qui vous êtes :</p>
+            <input type="radio" name="genre" value="homme" required> Homme
+            <input type="radio" name="genre" value="femme" required> Femme
+            <br><br>
+            <label>Votre âge :</label>
+            <select name="age" required>
+                <option value="">-- Choisir votre âge --</option>
+                <option>18-25 ans</option>
+                <option>26-40 ans</option>
+                <option>41-50 ans</option>
+                <option>50+ ans</option>
+            </select>
+            <br>
+            <button type="submit">Accéder à l'analyse (15€)</button>
+        </form>
+
+        <div class="testimonials">
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p>"Analyse bluffante en 7 questions. Une vraie clé pour comprendre mes réactions."</p>
+                <p><strong>— Sarah M., 34 ans</strong></p>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p>"Le profil 'Chasseur de tête' est un investissement largement rentabilisé."</p>
+                <p><strong>— Marc D., 45 ans</strong></p>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p>"Concept génial. J'ai parrainé mes collègues et déjà remboursé mon test."</p>
+                <p><strong>— Julie L., 28 ans</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
