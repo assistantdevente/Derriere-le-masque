@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Paiement - Derrière le Masque</title>
+    <style>
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; text-align: center; }
+        .container { max-width: 450px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; }
+        h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 20px; }
+        .price-tag { font-size: 3em; color: #d4af37; font-weight: bold; margin: 20px 0; border: 1px solid #555; padding: 10px; border-radius: 5px; background: #333; }
+        .benefits { text-align: left; margin: 20px 0; font-size: 0.9em; border-left: 3px solid #d4af37; padding-left: 15px; }
+        .paypal-btn { background-color: #0070ba; color: white; border: none; padding: 15px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; display: block; text-decoration: none; transition: 0.3s; margin-top: 20px; }
+        .paypal-btn:hover { background-color: #005ea6; transform: scale(1.02); }
+        .secure-text { font-size: 0.8em; color: #aaa; margin-top: 15px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analyse Prête</h1>
+        <p>Vos réponses ont été traitées avec succès.</p>
+        
+        <div class="price-tag">15 €</div>
+
+        <div class="benefits">
+            <p>✅ Votre profil complet en 15 paragraphes</p>
+            <p>✅ Analyse envoyée instantanément par e-mail</p>
+            <p>✅ Accès immédiat au programme de parrainage</p>
+            <p>✅ Bonus : Gagnez 3 € par ami invité</p>
+        </div>
+
+        <!-- FORMULAIRE PAYPAL -->
+        <form action="https://www.paypal.com" method="post">
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="TON_EMAIL_PAYPAL@ICI.COM">
+            <input type="hidden" name="item_name" value="Analyse Derrière le Masque">
+            <input type="hidden" name="amount" value="0.01">
+            <input type="hidden" name="currency_code" value="EUR">
+            <input type="hidden" name="return" value="https://derri-re-le-masque-production.up.railway.app">
+            <input type="hidden" name="no_shipping" value="1">
+            
+            <button type="submit" class="paypal-btn">Payer avec PayPal</button>
+        </form>
+        
+        <p class="secure-text">🔒 Transaction sécurisée par PayPal</p>
+    </div>
+</body>
+</html>
