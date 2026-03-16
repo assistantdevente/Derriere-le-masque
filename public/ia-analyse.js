@@ -11,7 +11,8 @@ async function genererAnalyse(reponsesClient) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${apiKey}`
+            "Authorization": `Bearer ${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
+}`
         },
         body: JSON.stringify({
             model: "gpt-3.5-turbo", // Plus stable et moins cher que le nano pour débuter
