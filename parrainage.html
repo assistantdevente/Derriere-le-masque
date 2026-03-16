@@ -22,7 +22,7 @@
         
         <div class="bonus-box">
             <p>Votre cagnotte actuelle :</p>
-            <div class="bonus-amount">0.00 €</div>
+            <div class="bonus-amount"><%= number_to_currency(current_user.balance, unit: "€", separator: ",", format: "%n %u") %></div>
             <div style="margin-top: 15px; background: #2c2c2c; padding: 10px; border-radius: 5px; border: 1px solid #d4af37;">
     <p style="font-size: 0.8em; color: #d4af37; margin: 0;">Votre lien personnel à partager :</p>
     <code id="monLien" style="color: white; font-size: 0.9em;">https://derri-re-le-masque-production.up.railway.app</code>
