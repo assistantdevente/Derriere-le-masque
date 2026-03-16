@@ -43,17 +43,27 @@
             <p>✅ Bonus : Gagnez 3 € par ami qui fait le test</p>
         </div>
 
-      <form action="https://www.paypal.com" method="post">
-  <input type="hidden" name="cmd" value="_xclick">
-  <input type="hidden" name="business" value="TON_VRAI_EMAIL_CONFIRME@ICI.COM">
-  <input type="hidden" name="item_name" value="Analyse Masque">
-  <input type="hidden" name="amount" value="15.00">
-  <input type="hidden" name="currency_code" value="EUR">
-  <input type="hidden" name="no_shipping" value="1">
-  <button type="submit" class="paypal-btn" style="background:#0070ba; color:white; padding:15px; width:100%; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
-    Tester le paiement PayPal
-  </button>
+    <form action="https://www.paypal.com" method="post">
+    <input type="hidden" name="cmd" value="_xclick">
+    
+    <!-- 1. TON EMAIL (Vérifie qu'il est correct) -->
+    <input type="hidden" name="business" value="TON_EMAIL_PAYPAL@ICI.COM">
+    
+    <input type="hidden" name="item_name" value="Analyse Derrière le Masque">
+    
+    <!-- 2. LE TEST A 1 CENTIME (Change en 15.00 après ton test) -->
+    <input type="hidden" name="amount" value="0.01">
+    <input type="hidden" name="currency_code" value="EUR">
+
+    <!-- 3. LA REDIRECTION (Très important) -->
+    <input type="hidden" name="return" value="https://derri-re-le-masque-production.up.railway.app">
+    <input type="hidden" name="no_shipping" value="1">
+
+    <button type="submit" class="paypal-btn" style="background:#0070ba; color:white; padding:15px; width:100%; border:none; border-radius:5px; font-weight:bold; cursor:pointer;">
+        Payer et débloquer mon analyse
+    </button>
 </form>
+
         
         <p class="secure-text">🔒 Transaction sécurisée et confidentielle</p>
     </div>
