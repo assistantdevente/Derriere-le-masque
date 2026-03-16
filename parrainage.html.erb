@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -8,10 +9,12 @@
         .container { max-width: 600px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
         h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 10px; }
         .bonus-box { background-color: #444; border: 1px dashed #d4af37; padding: 20px; margin: 20px 0; border-radius: 10px; }
-        .bonus-amount { font-size: 2em; color: #d4af37; font-weight: bold; }
+        .bonus-amount { font-size: 2.5em; color: #d4af37; font-weight: bold; margin: 10px 0; }
+        .link-box { margin-top: 15px; background: #2c2c2c; padding: 15px; border-radius: 10px; border: 1px solid #d4af37; }
         textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #555; background: #2c2c2c; color: white; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; }
         .btn-send { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.3s; }
         .btn-send:hover { background-color: #f1c40f; transform: scale(1.02); }
+        .btn-copy { background: #d4af37; color: #2c2c2c; border: none; padding: 8px 15px; margin-top: 10px; cursor: pointer; font-size: 0.8em; font-weight: bold; border-radius: 5px; }
         .limit-info { font-size: 0.8em; color: #aaa; margin-top: 15px; }
     </style>
 </head>
@@ -20,34 +23,46 @@
         <h1>Félicitations !</h1>
         <p>Votre analyse est en cours d'envoi vers votre boîte mail.</p>
         
+        <!-- Section Cagnotte Dynamique -->
         <div class="bonus-box">
             <p>Votre cagnotte actuelle :</p>
-            <div class="bonus-amount"><%= number_to_currency(current_user.balance, unit: "€", separator: ",", format: "%n %u") %></div>
-            <div style="margin-top: 15px; background: #2c2c2c; padding: 10px; border-radius: 5px; border: 1px solid #d4af37;">
-    <p style="font-size: 0.8em; color: #d4af37; margin: 0;">Votre lien personnel à partager :</p>
-    <code id="monLien" style="color: white; font-size: 0.9em;">https://derri-re-le-masque-production.up.railway.app<%= current_user.referral_code %></code>
-    <br>
-    <button onclick="copierLien()" style="background: #d4af37; color: #2c2c2c; border: none; padding: 5px 10px; margin-top: 10px; cursor: pointer; font-size: 0.7em; font-weight: bold;">COPIER LE LIEN</button>
-</div>
-
-<script>
-function copierLien() {
-    var text = document.getElementById("monLien").innerText;
-    navigator.clipboard.writeText(text);
-    alert("Lien copié ! Envoyez-le à vos amis.");
-}
-</script>
+            <div class="bonus-amount">
+                <%= number_to_currency(current_user.balance, unit: "€", separator: ",", format: "%n %u") %>
+            </div>
             <p>Gagnez <span style="color:#d4af37; font-weight:bold;">3 €</span> pour chaque ami qui réalise son test.</p>
         </div>
 
-        <form>
-            <p style="text-align: left; margin-bottom: 5px;">📧 Invitez jusqu'à 50 amis (séparez les emails par une virgule) :</p>
-            <textarea rows="4" placeholder="exemple1@mail.com, exemple2@mail.com..."></textarea>
+        <!-- Section Lien de Parrainage avec le CODE SECRET -->
+        <div class="link-box">
+            <p style="font-size: 0.8em; color: #d4af37; margin-bottom: 10px;">Votre lien personnel à partager :</p>
+            <code id="monLien" style="color: white; font-size: 0.9em; word-break: break-all;">
+                https://derri-re-le-masque-production.up.railway.app<%= current_user.referral_code %>
+            </code>
+            <br>
+            <button onclick="copierLien()" class="btn-copy">COPIER MON LIEN</button>
+        </div>
+
+        <!-- Formulaire d'invitation par Email -->
+        <form action="/invitations" method="post" style="margin-top: 30px;">
+            <p style="text-align: left; margin-bottom: 5px;">📧 Invitez jusqu'à 50 amis (séparez par une virgule) :</p>
+            <textarea name="emails" rows="4" placeholder="ami1@mail.com, ami2@mail.com..."></textarea>
             
-            <button type="button" class="btn-send">Envoyer les invitations</button>
+            <button type="submit" class="btn-send">Envoyer les invitations</button>
         </form>
         
         <p class="limit-info">Note : Au-delà de 50 invitations, un nouveau test payant débloquera 10 invitations supplémentaires.</p>
+        
+        <hr style="border: 0; border-top: 1px solid #555; margin: 30px 0;">
+        <a href="questions.html" style="color: #d4af37; text-decoration: none; font-weight: bold;">➡️ Passer mon test maintenant</a>
     </div>
+
+    <script>
+    function copierLien() {
+        var text = document.getElementById("monLien").innerText.trim();
+        navigator.clipboard.writeText(text).then(function() {
+            alert("Lien de parrainage copié ! Partagez-le avec vos amis.");
+        });
+    }
+    </script>
 </body>
 </html>
