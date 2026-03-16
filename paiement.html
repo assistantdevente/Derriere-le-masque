@@ -3,19 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Paiement - Derrière le Masque</title>
+    <style>
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; text-align: center; }
+        .container { max-width: 500px; margin: auto; background-color: #3d3d3d; padding: 40px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 20px; }
+        .price-tag { font-size: 3em; color: #d4af37; font-weight: bold; margin: 20px 0; border: 1px solid #555; padding: 10px; border-radius: 5px; background: #333; }
+        .benefits { text-align: left; margin: 20px 0; font-size: 0.9em; border-left: 3px solid #d4af37; padding-left: 15px; }
+        .paypal-btn { background-color: #0070ba; color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; transition: 0.3s; text-decoration: none; display: inline-block; }
+        .paypal-btn:hover { background-color: #005ea6; transform: scale(1.02); }
+        .secure-text { font-size: 0.8em; color: #aaa; margin-top: 15px; }
+    </style>
 </head>
 <body>
-    <h1>Bravo ! Votre profil est prêt.</h1>
-    <p>Pour recevoir votre analyse psychologique détaillée par e-mail, une participation de 15 € est demandée.</p>
-    
-    <div style="border: 2px solid #000; padding: 20px; width: 300px;">
-        <h3>Prix : 15 €</h3>
-        <p>Paiement sécurisé par PayPal</p>
-        <!-- Plus tard, on mettra ici le vrai bouton PayPal -->
-        <a href="parrainage.html" style="text-decoration:none;"><button type="button" style="background-color: #0070ba; color: white; padding: 10px;">Payer avec PayPal</button></a>
-    </div>
+    <div class="container">
+        <h1>Analyse Terminée</h1>
+        <p>Vos réponses ont été traitées. Votre profil psychologique complet est prêt à être généré.</p>
+        
+        <div class="price-tag">15 €</div>
 
-    <hr>
-    <p><i>Note : Après le paiement, vous pourrez inviter vos amis et gagner 3 € par ami qui fait le test !</i></p>
+        <div class="benefits">
+            <p>✅ Rapport détaillé de 5 pages par e-mail</p>
+            <p>✅ Accès immédiat au programme de parrainage</p>
+            <p>✅ 3 € de bonus par ami invité</p>
+        </div>
+
+        <a href="parrainage.html" class="paypal-btn">Payer avec PayPal</a>
+        
+        <p class="secure-text">🔒 Transaction sécurisée et confidentielle</p>
+    </div>
 </body>
 </html>
