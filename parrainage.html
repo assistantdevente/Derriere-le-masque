@@ -2,24 +2,38 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Espace Parrainage - Derrière le Masque</title>
+    <title>Parrainage - Derrière le Masque</title>
+    <style>
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; text-align: center; }
+        .container { max-width: 600px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 10px; }
+        .bonus-box { background-color: #444; border: 1px dashed #d4af37; padding: 20px; margin: 20px 0; border-radius: 10px; }
+        .bonus-amount { font-size: 2em; color: #d4af37; font-weight: bold; }
+        textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #555; background: #2c2c2c; color: white; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; }
+        .btn-send { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 20px; transition: 0.3s; }
+        .btn-send:hover { background-color: #f1c40f; transform: scale(1.02); }
+        .limit-info { font-size: 0.8em; color: #aaa; margin-top: 15px; }
+    </style>
 </head>
 <body>
-    <h1>Félicitations ! Votre test est envoyé par mail.</h1>
-    <div style="background-color: #e3f2fd; padding: 15px; border-radius: 10px;">
-        <h2>Gagnez 3 € par ami invité !</h2>
-        <p>Vous pouvez inviter jusqu'à 50 amis. Pour chaque ami qui fait le test, nous vous versons 3 € sur votre compte PayPal.</p>
+    <div class="container">
+        <h1>Félicitations !</h1>
+        <p>Votre analyse est en cours d'envoi vers votre boîte mail.</p>
+        
+        <div class="bonus-box">
+            <p>Votre cagnotte actuelle :</p>
+            <div class="bonus-amount">0.00 €</div>
+            <p>Gagnez <span style="color:#d4af37; font-weight:bold;">3 €</span> pour chaque ami qui réalise son test.</p>
+        </div>
+
+        <form>
+            <p style="text-align: left; margin-bottom: 5px;">📧 Invitez jusqu'à 50 amis (séparez les emails par une virgule) :</p>
+            <textarea rows="4" placeholder="exemple1@mail.com, exemple2@mail.com..."></textarea>
+            
+            <button type="button" class="btn-send">Envoyer les invitations</button>
+        </form>
+        
+        <p class="limit-info">Note : Au-delà de 50 invitations, un nouveau test payant débloquera 10 invitations supplémentaires.</p>
     </div>
-
-    <form>
-        <h3>Inviter mes amis :</h3>
-        <p>Entrez les adresses emails (séparées par une virgule) :</p>
-        <textarea rows="5" cols="50" placeholder="ami1@mail.com, ami2@mail.com..."></textarea>
-        <br><br>
-        <button type="button" style="background-color: #4CAF50; color: white; padding: 10px;">Envoyer les invitations</button>
-    </form>
-
-    <hr>
-    <p><i>Astuce : Si vous invitez plus de 50 amis, vous devrez refaire un test pour débloquer 10 invitations supplémentaires.</i></p>
 </body>
 </html>
