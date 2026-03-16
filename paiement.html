@@ -43,7 +43,25 @@
             <p>✅ Bonus : Gagnez 3 € par ami qui fait le test</p>
         </div>
 
-        <a href="parrainage.html" class="paypal-btn">Payer avec PayPal</a>
+        <!-- Formulaire de paiement PayPal -->
+<form action="https://www.paypal.com" method="post" style="margin-top: 20px;">
+    <!-- Ton adresse email PayPal ici -->
+    <input type="hidden" name="business" value="TON_EMAIL_PAYPAL@ICI.COM">
+    
+    <!-- Détails du produit -->
+    <input type="hidden" name="cmd" value="_xclick">
+    <input type="hidden" name="item_name" value="Analyse Psychologique - Derrière le Masque">
+    <input type="hidden" name="amount" value="15.00">
+    <input type="hidden" name="currency_code" value="EUR">
+    
+    <!-- Redirection après le paiement (Remplace par TON lien Railway) -->
+    <input type="hidden" name="return" value="https://derri-re-le-masque-production.up.railway.app">
+    <input type="hidden" name="cancel_return" value="https://derri-re-le-masque-production.up.railway.app">
+
+    <button type="submit" class="paypal-btn" style="border:none; cursor:pointer; width:100%; display:block;">
+        Payer 15€ avec PayPal
+    </button>
+</form>
         
         <p class="secure-text">🔒 Transaction sécurisée et confidentielle</p>
     </div>
