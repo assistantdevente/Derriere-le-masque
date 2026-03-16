@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Analyse - Derrière le Masque</title>
+    <style>
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; line-height: 1.6; }
+        .container { max-width: 700px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: #d4af37; text-align: center; text-transform: uppercase; font-size: 1.8em; margin-bottom: 30px; }
+        .question { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 15px; text-align: left; }
+        .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
+        input[type="radio"] { margin-right: 10px; accent-color: #d4af37; }
+        button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
+        button:hover { background-color: #f1c40f; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Votre Analyse (7 Questions)</h1>
+        
+        <form id="quizForm">
+            <div class="question">
+                <p>1. Face à un conflit, vous privilégiez :</p>
+                <input type="radio" name="q1" required> L'apaisement et la médiation <br>
+                <input type="radio" name="q1"> La confrontation franche et directe <br>
+                <input type="radio" name="q1"> Le recul pour analyser la situation
+            </div>
+
+            <div class="question">
+                <p>2. Votre énergie se recharge plutôt :</p>
+                <input type="radio" name="q2" required> Dans le calme et la solitude <br>
+                <input type="radio" name="q2"> Au contact d'un groupe dynamique <br>
+                <input type="radio" name="q2"> Lors d'échanges profonds en tête-à-tête
+            </div>
+
+            <div class="question">
+                <p>3. Pour prendre une décision importante :</p>
+                <input type="radio" name="q3" required> Vous suivez votre intuition profonde <br>
+                <input type="radio" name="q3"> Vous analysez les faits et les chiffres <br>
+                <input type="radio" name="q3"> Vous demandez l'avis de personnes de confiance
+            </div>
+
+            <div class="question">
+                <p>4. Dans votre travail, vous êtes :</p>
+                <input type="radio" name="q4" required> Très organisé, tout est planifié <br>
+                <input type="radio" name="q4"> Adaptable, vous gérez l'imprévu avec brio <br>
+                <input type="radio" name="q4"> Créatif, vous cherchez de nouvelles méthodes
+            </div>
+
+            <div class="question">
+                <p>5. On dit souvent de vous que vous êtes :</p>
+                <input type="radio" name="q5" required> Un idéaliste tourné vers l'avenir <br>
+                <input type="radio" name="q5"> Un réaliste pragmatique et efficace <br>
+                <input type="radio" name="q5"> Un observateur attentif et réfléchi
+            </div>
+
+            <div class="question">
+                <p>6. Face au changement, votre premier réflexe est :</p>
+                <input type="radio" name="q6" required> L'excitation et l'envie d'essayer <br>
+                <input type="radio" name="q6"> L'observation prudente avant d'agir <br>
+                <input type="radio" name="q6"> La recherche d'un plan pour s'adapter
+            </div>
+
+            <div class="question">
+                <p>7. Ce qui vous définit le mieux est :</p>
+                <input type="radio" name="q7" required> Votre souci du détail et de la précision <br>
+                <input type="radio" name="q7"> Votre vision d'ensemble et stratégique <br>
+                <input type="radio" name="q7"> Votre capacité à fédérer les gens autour de vous
+            </div>
+
+            <button type="button" onclick="validerTest()">Recevoir mon analyse complète</button>
+        </form>
+    </div>
+
+    <script>
+        function validerTest() {
+            const form = document.getElementById('quizForm');
+            if (form.checkValidity()) {
+                alert('Félicitations ! Vos 15 paragraphes personnalisés sont en cours de génération et seront envoyés à votre e-mail.');
+                // Ici, on redirigera vers la page de succès ou l'accueil
+                window.location.href = "index.html";
+            } else {
+                alert('Veuillez répondre à toutes les questions avant de valider.');
+            }
+        }
+    </script>
+</body>
+</html>
