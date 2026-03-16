@@ -5,11 +5,26 @@
     <title>Paiement - Derrière le Masque</title>
     <style>
         body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; text-align: center; }
-        .container { max-width: 500px; margin: auto; background-color: #3d3d3d; padding: 40px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
+        .container { max-width: 450px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; }
         h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 20px; }
         .price-tag { font-size: 3em; color: #d4af37; font-weight: bold; margin: 20px 0; border: 1px solid #555; padding: 10px; border-radius: 5px; background: #333; }
         .benefits { text-align: left; margin: 20px 0; font-size: 0.9em; border-left: 3px solid #d4af37; padding-left: 15px; }
-        .paypal-btn { background-color: #0070ba; color: white; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; transition: 0.3s; text-decoration: none; display: inline-block; }
+        
+        /* Voici le réglage pour le bouton centré */
+        .paypal-btn { 
+            background-color: #0070ba; 
+            color: white; 
+            text-decoration: none; 
+            display: block; 
+            width: 100%; 
+            padding: 15px 0; 
+            font-size: 1.2em; 
+            font-weight: bold; 
+            border-radius: 5px; 
+            margin: 30px 0; 
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
         .paypal-btn:hover { background-color: #005ea6; transform: scale(1.02); }
         .secure-text { font-size: 0.8em; color: #aaa; margin-top: 15px; }
     </style>
@@ -17,19 +32,18 @@
 <body>
     <div class="container">
         <h1>Analyse Terminée</h1>
-        <p>Vos réponses ont été traitées. Votre profil psychologique complet est prêt à être généré.</p>
+        <p>Vos réponses ont été traitées. Votre profil est prêt.</p>
         
         <div class="price-tag">15 €</div>
 
-       <div class="benefits">
+        <div class="benefits">
             <p>✅ Votre profil complet en 15 paragraphes détaillés</p>
             <p>✅ Analyse envoyée instantanément par e-mail</p>
             <p>✅ Accès prioritaire au programme de parrainage</p>
             <p>✅ Bonus : Gagnez 3 € par ami qui fait le test</p>
         </div>
 
-        <a href="parrainage.html" class="paypal-btn" style="box-sizing: border-box; display: block; width: 100%; margin: 20px auto; text-align: center;">Payer avec PayPal</a>
-
+        <a href="parrainage.html" class="paypal-btn">Payer avec PayPal</a>
         
         <p class="secure-text">🔒 Transaction sécurisée et confidentielle</p>
     </div>
