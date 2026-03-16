@@ -25,7 +25,7 @@
             <div class="bonus-amount"><%= number_to_currency(current_user.balance, unit: "€", separator: ",", format: "%n %u") %></div>
             <div style="margin-top: 15px; background: #2c2c2c; padding: 10px; border-radius: 5px; border: 1px solid #d4af37;">
     <p style="font-size: 0.8em; color: #d4af37; margin: 0;">Votre lien personnel à partager :</p>
-    <code id="monLien" style="color: white; font-size: 0.9em;">https://derri-re-le-masque-production.up.railway.app</code>
+    <code id="monLien" style="color: white; font-size: 0.9em;">https://derri-re-le-masque-production.up.railway.app<%= current_user.referral_code %></code>
     <br>
     <button onclick="copierLien()" style="background: #d4af37; color: #2c2c2c; border: none; padding: 5px 10px; margin-top: 10px; cursor: pointer; font-size: 0.7em; font-weight: bold;">COPIER LE LIEN</button>
 </div>
