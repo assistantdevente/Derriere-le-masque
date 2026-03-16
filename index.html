@@ -19,22 +19,28 @@
         <h1>Derrière le Masque</h1>
         <p><i>L'analyse psychologique qui révèle votre véritable nature.</i></p>
         <hr style="border: 0; border-top: 1px solid #d4af37; margin: 20px 0;">
+
+        <form action="paiement.html">
+    <p>Dites-nous qui vous êtes :</p>
+    <!-- On ajoute "required" pour bloquer si rien n'est coché -->
+    <input type="radio" name="genre" value="homme" required> Homme
+    <input type="radio" name="genre" value="femme" required> Femme
+    <br><br>
+    
+    <label>Votre âge :</label><br>
+    <select name="age" required style="margin-top:10px;">
+        <option value="">-- Choisir votre âge --</option>
+        <option value="18-25">18-25 ans</option>
+        <option value="26-40">26-40 ans</option>
+        <option value="41-50">41-50 ans</option>
+        <option value="50+">Plus de 50 ans</option>
+    </select>
+    <br>
+    
+    <!-- Ce bouton va maintenant vérifier les cases avant de changer de page -->
+    <button type="submit">Accéder à l'analyse (15€)</button>
+</form>
         
-        <form>
-            <p>Dites-nous qui vous êtes :</p>
-            <input type="radio" name="genre" value="homme"> Homme
-            <input type="radio" name="genre" value="femme"> Femme
-            <br><br>
-            <label>Votre âge :</label>
-            <select name="age">
-                <option>18-25 ans</option>
-                <option>26-40 ans</option>
-                <option>41-50 ans</option>
-                <option>50+ ans</option>
-            </select>
-            <br>
-            <a href="questions.html"><button type="button">Commencer l'analyse</button></a>
-        </form>
          <!-- Section Témoignages en colonnes -->
         <div style="margin-top: 50px; display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap;">
             
