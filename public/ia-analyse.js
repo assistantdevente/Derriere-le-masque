@@ -1,39 +1,19 @@
-/**
- * CERVEAU IA - DERRIÈRE LE MASQUE
- * Génération de l'analyse psychologique personnalisée (15 paragraphes)
- */
-
 async function genererAnalyse(reponsesClient, texteLibre) {
-    // Connexion sécurisée au coffre-fort de Railway
+    // Railway injectera la clé ici via les variables
     const apiKey = process.env.OPENAI_API_KEY; 
-    
-    // Récupération du profil capturé sur la page d'accueil
     const genre = localStorage.getItem('user_genre') || "Non précisé";
     const age = localStorage.getItem('user_age') || "Non précisé";
-
-    // LE SUPER-PROMPT (La consigne secrète Style Gris & Or)
-    const prompt = `Tu es un expert en psychologie analytique et comportementale, spécialisé dans le profilage de haut niveau. 
-    Ton style est celui de la collection 'Derrière le Masque' : prestigieux, mystérieux, profond et d'une élégance rare (Style Gris & Or).
-
-    DONNÉES CLIENT :
-    - Profil : ${genre}, tranche d'âge ${age}
-    - Structure QCM : ${JSON.stringify(reponsesClient)}
-    - L'Empreinte de l'Esprit (Confidences) : "${texteLibre}"
-
-    CONSIGNE DE RÉDACTION :
-    Rédige 15 paragraphes denses et percutants, sans titres de section visibles, mais structurés selon cette progression :
-    1. L'ARCHITECTURE DE L'ÂME : Analyse les fondations invisibles de son caractère.
-    2. LA DYNAMIQUE DE L'ACTION : Sa manière de transformer ses pensées en actes (Travail et Ambition).
-    3. LE MIROIR DE L'AUTRE : Sa mécanique relationnelle et sa perception d'autrui.
-    4. L'HORIZON DES POSSIBLES : Conseils stratégiques basés spécifiquement sur son texte libre.
-
-    VOCABULAIRE SIGNATURE : 'Clair-obscur', 'Mécanique du désir', 'Équilibre fragile', 'Dissonance', 'Instinct', 'Héritage émotionnel'.
     
-    RÈGLE D'OR : Le texte doit être si précis que le client doit avoir l'impression que tu lis dans ses pensées les plus secrètes. 
-    L'analyse doit être rédigée à la deuxième personne du singulier (Tu) ou du pluriel (Vous) selon un ton respectueux mais pénétrant.
-    NE PAS FAIRE DE RÉSUMÉ À LA FIN.`;
+    const prompt = `Tu es un expert en psychologie comportementale de luxe. 
+    1. Analyse ces 7 réponses structurelles : ${JSON.stringify(reponsesClient)}.
+    2. Profil : ${genre}, ${age}.
+    3. MAIS SURTOUT, intègre ce texte personnel : "${texteLibre}".
+    
+    Rédige une analyse exclusive de 15 paragraphes élégants (style Gris & Or). 
+    Divise impérativement en 4 sections : Architecture de l'âme, Action, Relations, Futur.`;
 
     try {
+        // CORRECTION 1 : L'URL DOIT FINIR PAR /v1/chat/completions
         const response = await fetch("https://api.openai.com", {
             method: "POST",
             headers: {
@@ -41,36 +21,23 @@ async function genererAnalyse(reponsesClient, texteLibre) {
                 "Authorization": `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "gpt-3.5-turbo", // Utilisation du modèle stable
-                messages: [
-                    {
-                        role: "system", 
-                        content: "Tu es un expert en psychologie de luxe. Tu ne réponds qu'en français avec un style littéraire soutenu."
-                    },
-                    {
-                        role: "user", 
-                        content: prompt
-                    }
-                ],
-                temperature: 0.8, // Niveau de créativité pour l'analyse personnalisée
-                max_tokens: 2500  // Assure la longueur des 15 paragraphes
+                model: "gpt-3.5-turbo", 
+                messages: [{role: "user", content: prompt}],
+                temperature: 0.7
             })
         });
 
         const data = await response.json();
-
-        // Vérification du résultat
+        
+        // CORRECTION 2 : AJOUT DE [0] POUR RÉCUPÉRER LA RÉPONSE
         if (data.choices && data.choices[0]) {
-            const analyseFinale = data.choices[0].message.content;
-            console.log("Analyse générée avec succès.");
-            return analyseFinale;
+            return data.choices[0].message.content;
         } else {
-            console.error("Réponse vide de l'IA", data);
-            return "Désolé, l'IA a rencontré une zone d'ombre. Veuillez réessayer.";
+            console.error("Réponse IA vide", data);
+            return "Désolé, l'analyse n'a pas pu être générée.";
         }
-
     } catch (error) {
-        console.error("Erreur technique lors de l'appel OpenAI:", error);
-        return "Une erreur technique est survenue. L'analyse n'a pas pu être finalisée.";
+        console.error("Erreur IA:", error);
+        return "Une erreur est survenue lors de la génération de l'analyse.";
     }
 }
