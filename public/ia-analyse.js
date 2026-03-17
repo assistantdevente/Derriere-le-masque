@@ -2,18 +2,24 @@ async function genererAnalyse(reponsesClient, texteLibre) {
     const apiKey = process.env.OPENAI_API_KEY; 
     
     // LA CONSIGNE MAGIQUE (Le Prompt)
-    const prompt = `Tu es un expert en psychologie comportementale de luxe. 
-    1. Analyse ces 7 réponses structurelles : ${JSON.stringify(reponsesClient)}.
-    2. MAIS SURTOUT, intègre et analyse profondément ce texte personnel : "${texteLibre}".
-    
-    Rédige une analyse exclusive de 15 paragraphes élégants (style Gris & Or). 
-    Divise impérativement en 4 sections : 
-    - L'Architecture de l'Âme (Personnalité)
-    - La Dynamique de l'Action (Travail/Ambition)
-    - Le Miroir de l'Autre (Relations)
-    - L'Horizon des Possibles (Futur et conseils basés sur son texte libre).
-    
-    Le ton doit être mystérieux, valorisant et d'une précision chirurgicale.`;
+    const prompt = `Tu es un expert en psychologie analytique et comportementale, spécialisé dans le profilage de haut niveau. 
+Ton style est celui de la collection 'Derrière le Masque' : prestigieux, mystérieux, profond et d'une élégance rare (Style Gris & Or).
+
+DONNÉES CLIENT :
+- Genre/Âge : ${genre}, ${age}
+- Réponses QCM : ${JSON.stringify(reponsesClient)}
+- L'Empreinte de l'Esprit (Témoignage personnel) : "${texteLibre}"
+
+CONSIGNE DE RÉDACTION :
+Rédige 15 paragraphes denses et percutants, sans titres de section visibles, mais structurés en 4 piliers :
+1. L'ARCHITECTURE DE L'ÂME : Analyse les fondations de son caractère.
+2. LA DYNAMIQUE DE L'ACTION : Comment il/elle transforme ses pensées en actes (Travail/Ambition).
+3. LE MIROIR DE L'AUTRE : Sa façon d'aimer, de s'entourer et de percevoir autrui.
+4. L'HORIZON DES POSSIBLES : Conseils stratégiques basés spécifiquement sur son texte libre.
+
+VOCABULAIRE À UTILISER : 'Clair-obscur', 'Mécanique du désir', 'Équilibre fragile', 'Dissonance', 'Instinct', 'Héritage émotionnel'.
+RÈGLE D'OR : Le texte doit être si précis que le client doit avoir l'impression que tu lis dans ses pensées les plus secrètes. 
+NE PAS FAIRE DE RÉSUMÉ À LA FIN.`;
 
     try {
         const response = await fetch("https://api.openai.com", {
