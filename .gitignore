@@ -1,0 +1,11 @@
+# Ne jamais envoyer les bibliothèques installées (Railway les installera lui-même)
+node_modules/
+
+# Ne jamais envoyer tes clés secrètes si tu utilises un fichier .env local
+.env
+
+# Fichiers système inutiles
+.DS_Store
+Thumbs.db
+dist/
+build/
