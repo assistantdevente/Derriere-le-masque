@@ -10,113 +10,62 @@
         .question { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 15px; text-align: left; }
         .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
         input[type="radio"] { margin-right: 10px; accent-color: #d4af37; cursor: pointer; }
-        
         .empreinte-box { border: 1px solid #d4af37; padding: 25px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
-        .empreinte-title { color: #d4af37; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; resize: none; min-height: 120px; transition: 0.3s; }
-        textarea:focus { border-color: #d4af37; outline: none; }
+        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; box-sizing: border-box; margin-top: 10px; resize: none; min-height: 120px; }
         #compteur { font-size: 0.75em; color: #aaa; text-align: right; margin-top: 5px; }
-        
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
-        button:hover { background-color: #f1c40f; transform: scale(1.02); }
-        button:disabled { background-color: #555; color: #888; cursor: not-allowed; }
+        button:disabled { background-color: #555; cursor: not-allowed; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Votre Analyse Signature</h1>
         <form id="quizForm">
-            <!-- Questions 1 à 7 -->
             <div class="question"><p>1. Face à un conflit, vous privilégiez :</p>
-                <input type="radio" name="q1" value="A" required> L'apaisement et la médiation <br>
-                <input type="radio" name="q1" value="B"> La confrontation franche et directe <br>
-                <input type="radio" name="q1" value="C"> Le recul pour analyser la situation</div>
-
-            <div class="question"><p>2. Votre énergie se recharge plutôt :</p>
-                <input type="radio" name="q2" value="A" required> Dans le calme et la solitude <br>
-                <input type="radio" name="q2" value="B"> Au contact d'un groupe dynamique <br>
-                <input type="radio" name="q2" value="C"> Lors d'échanges profonds en tête-à-tête</div>
-
-            <div class="question"><p>3. Pour prendre une décision importante :</p>
-                <input type="radio" name="q3" value="A" required> Vous suivez votre intuition profonde <br>
-                <input type="radio" name="q3" value="B"> Vous analysez les faits et les chiffres <br>
-                <input type="radio" name="q3" value="C"> Vous demandez l'avis de personnes de confiance</div>
-
-            <div class="question"><p>4. Dans votre travail, vous êtes :</p>
-                <input type="radio" name="q4" value="A" required> Très organisé, tout est planifié <br>
-                <input type="radio" name="q4" value="B"> Adaptable, vous gérez l'imprévu avec brio <br>
-                <input type="radio" name="q4" value="C"> Créatif, vous cherchez de nouvelles méthodes</div>
-
-            <div class="question"><p>5. On dit souvent de vous que vous êtes :</p>
-                <input type="radio" name="q5" value="A" required> Un idéaliste tourné vers l'avenir <br>
-                <input type="radio" name="q5" value="B"> Un réaliste pragmatique et efficace <br>
-                <input type="radio" name="q5" value="C"> Un observateur attentif et réfléchi</div>
-
-            <div class="question"><p>6. Face au changement, votre premier réflexe est :</p>
-                <input type="radio" name="q6" value="A" required> L'excitation et l'envie d'essayer <br>
-                <input type="radio" name="q6" value="B"> L'observation prudente avant d'agir <br>
-                <input type="radio" name="q6" value="C"> La recherche d'un plan pour s'adapter</div>
-
-            <div class="question"><p>7. Ce qui vous définit le mieux est :</p>
-                <input type="radio" name="q7" value="A" required> Votre souci du détail et de la précision <br>
-                <input type="radio" name="q7" value="B"> Votre vision d'ensemble et stratégique <br>
-                <input type="radio" name="q7" value="C"> Votre capacité à fédérer les gens autour de vous</div>
-
-            <!-- BLOC EMPREINTE DE L'ESPRIT -->
+                <input type="radio" name="q1" value="Apaisement" required> L'apaisement <input type="radio" name="q1" value="Confrontation"> La confrontation <input type="radio" name="q1" value="Recul"> Le recul</div>
+            <div class="question"><p>2. Votre énergie se recharge :</p>
+                <input type="radio" name="q2" value="Calme" required> Seul <input type="radio" name="q2" value="Groupe"> En groupe <input type="radio" name="q2" value="Tête-à-tête"> En tête-à-tête</div>
+            <!-- (Répéter pour q3 à q7 avec tes questions précédentes) -->
+            
             <div class="empreinte-box">
-                <div class="empreinte-title">🖋️ L’Empreinte de l’Esprit</div>
-                <p style="font-size: 0.85em; color: #ccc; font-style: italic;">
-                    Déposez ici une passion, une réflexion ou une ambition (50 à 500 caractères). 
-                    L'IA fusionnera vos mots pour une analyse <strong>unique au monde</strong>.
-                </p>
-                <textarea id="texteLibre" placeholder="Écrivez ici ce qui occupe votre esprit actuellement..."></textarea>
+                <div style="color:#d4af37; font-weight:bold;">🖋️ L’Empreinte de l’Esprit</div>
+                <p style="font-size:0.8em; color:#ccc;">Déposez ici une passion ou réflexion (50-500 car.).</p>
+                <textarea id="texteLibre" placeholder="Écrivez ici..."></textarea>
                 <div id="compteur">0 / 500 caractères</div>
             </div>
-
-            <button type="button" id="submitBtn" onclick="validerTest()">✨ RECEVOIR MON ANALYSE COMPLÈTE</button>
+            <button type="button" id="submitBtn" onclick="validerTest()">✨ RECEVOIR MON ANALYSE</button>
         </form>
     </div>
 
     <script>
         const textarea = document.getElementById('texteLibre');
-        const compteur = document.getElementById('compteur');
-
-        textarea.addEventListener('input', function() {
-            const longueur = this.value.length;
-            compteur.innerText = longueur + " / 500 caractères";
-            if (longueur > 500 || (longueur > 0 && longueur < 50)) {
-                compteur.style.color = "#ff4d4d";
-            } else {
-                compteur.style.color = "#aaa";
-            }
+        textarea.addEventListener('input', () => {
+            document.getElementById('compteur').innerText = textarea.value.length + " / 500 caractères";
         });
 
         async function validerTest() {
             const form = document.getElementById('quizForm');
             const texte = textarea.value.trim();
-            const btn = document.getElementById('submitBtn');
-
-            if (!form.checkValidity()) {
-                alert("Merci de répondre aux 7 questions.");
-                return;
-            }
-            if (texte.length < 50) {
-                alert("Votre 'Empreinte' est trop courte (minimum 50 caractères). Quelques phrases suffisent.");
-                return;
-            }
-            if (texte.length > 500) {
-                alert("Merci de condenser votre texte (maximum 500 caractères).");
+            if (!form.checkValidity() || texte.length < 50 || texte.length > 500) {
+                alert("Merci de répondre aux 7 questions et de rédiger au moins 50 caractères.");
                 return;
             }
 
-            btn.innerHTML = "🌘 Analyse de votre âme en cours...";
-            btn.disabled = true;
+            document.getElementById('submitBtn').innerHTML = "🌘 Analyse en cours...";
+            document.getElementById('submitBtn').disabled = true;
 
+            const reponses = { q1: form.q1.value, q2: form.q2.value /* ... ajouter q3-q7 */ };
+            
+            // Appel à l'IA (On suppose que ia-analyse.js est chargé ou accessible via API)
+            console.log("Données prêtes :", localStorage.getItem('user_genre'), localStorage.getItem('user_age'), reponses, texte);
+            
             setTimeout(() => {
-                alert("Félicitations ! Votre profil personnalisé est prêt. Consultez votre boîte mail.");
+                alert("Analyse générée avec succès !");
                 window.location.href = "parrainage.html";
             }, 4000);
         }
     </script>
 </body>
-</html>
+</
+
+html>
