@@ -2,23 +2,26 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Accès Activé - Derrière le Masque</title>
     <style>
-        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 40px; text-align: center; }
-        .container { max-width: 600px; margin: auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); }
+        body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; padding: 20px; text-align: center; }
+        .container { max-width: 600px; margin: 20px auto; background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); box-sizing: border-box; }
         h1 { color: #d4af37; text-transform: uppercase; font-size: 1.5em; margin-bottom: 20px; }
         
-        /* Bouton de Test Prioritaire */
         .btn-main-test { display: block; background-color: #d4af37; color: #2c2c2c; text-decoration: none; padding: 20px; font-weight: bold; border-radius: 5px; font-size: 1.3em; margin: 20px 0; transition: 0.3s; border: 2px solid transparent; }
         .btn-main-test:hover { background-color: #f1c40f; transform: scale(1.02); }
 
-        /* Section Parrainage (Optionnelle) */
         .parrainage-section { margin-top: 40px; border-top: 1px solid #555; padding-top: 20px; }
         .bonus-box { background-color: #444; border: 1px dashed #d4af37; padding: 20px; margin: 20px 0; border-radius: 10px; }
         .bonus-amount { font-size: 2.2em; color: #d4af37; font-weight: bold; }
-        .link-box { background: #2c2c2c; padding: 15px; border-radius: 10px; border: 1px solid #d4af37; }
-        textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #555; background: #2c2c2c; color: white; margin-top: 10px; box-sizing: border-box; }
-        .btn-send { background-color: #555; color: #d4af37; border: 1px solid #d4af37; padding: 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; }
+        .link-box { background: #2c2c2c; padding: 15px; border-radius: 10px; border: 1px solid #d4af37; overflow-wrap: break-word; }
+        
+        textarea { width: 100%; padding: 15px; border-radius: 5px; border: 1px solid #555; background: #2c2c2c; color: white; margin-top: 10px; box-sizing: border-box; font-family: sans-serif; }
+        .btn-send { background-color: #555; color: #d4af37; border: 1px solid #d4af37; padding: 12px; font-weight: bold; border-radius: 5px; cursor: pointer; width: 100%; margin-top: 10px; transition: 0.3s; }
+        .btn-send:hover { background-color: #666; }
+        
+        .btn-copy { background: #d4af37; color: #2c2c2c; border: none; padding: 8px 15px; margin-top: 10px; cursor: pointer; font-size: 0.8em; font-weight: bold; border-radius: 3px; }
     </style>
 </head>
 <body>
@@ -26,7 +29,7 @@
         <h1>Paiement Confirmé</h1>
         <p>Votre accès est maintenant déverrouillé.</p>
 
-        <!-- ACTION PRINCIPALE : LE TEST -->
+        <!-- ACTION PRINCIPALE -->
         <a href="questions.html" class="btn-main-test">🚀 PASSER MON TEST MAINTENANT</a>
         <p style="font-size: 0.85em; color: #aaa;">(Étape obligatoire pour recevoir vos 15 paragraphes)</p>
 
@@ -43,13 +46,13 @@
 
             <div class="link-box">
                 <p style="font-size: 0.75em; color: #d4af37; margin-bottom: 5px;">Votre lien de parrainage :</p>
-                <code id="monLien" style="color: white; font-size: 0.85em; word-break: break-all;">https://derri-re-le-masque-production.up.railway.app</code>
+                <code id="monLien" style="color: white; font-size: 0.85em;">https://derri-re-le-masque-production.up.railway.app</code>
                 <br>
-                <button onclick="copierLien()" style="background: #d4af37; color: #2c2c2c; border: none; padding: 5px 10px; margin-top: 10px; cursor: pointer; font-size: 0.7em; font-weight: bold; border-radius: 3px;">COPIER LE LIEN</button>
+                <button class="btn-copy" onclick="copierLien()">COPIER LE LIEN</button>
             </div>
 
-            <form style="margin-top: 20px;" onsubmit="alert('Invitations envoyées !'); return false;">
-                <textarea rows="3" placeholder="ami1@mail.com, ami2@mail.com..."></textarea>
+            <form style="margin-top: 20px;" onsubmit="envoyerInvitations(event)">
+                <textarea id="emails" rows="3" placeholder="ami1@mail.com, ami2@mail.com..."></textarea>
                 <button type="submit" class="btn-send">Envoyer les invitations</button>
             </form>
         </div>
@@ -57,12 +60,24 @@
 
     <script>
     function copierLien() {
-        var text = document.getElementById("monLien").innerText.trim();
-        navigator.clipboard.writeText(text).then(function() {
+        const text = document.getElementById("monLien").innerText;
+        navigator.clipboard.writeText(text).then(() => {
             alert("Lien de parrainage copié !");
         });
+    }
+
+    function envoyerInvitations(e) {
+        e.preventDefault();
+        const emails = document.getElementById(
+
+'emails').value;
+        if(emails.trim() !== "") {
+            alert("Invitations envoyées à : " + emails);
+            document.getElementById('emails').value = "";
+        } else {
+            alert("Veuillez saisir au moins une adresse e-mail.");
+        }
     }
     </script>
 </body>
 </html>
-
