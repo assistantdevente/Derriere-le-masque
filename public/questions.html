@@ -10,9 +10,8 @@
         .question { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 15px; text-align: left; }
         .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
         input[type="radio"] { margin-right: 10px; accent-color: #d4af37; cursor: pointer; }
-        .empreinte-box { border: 1px solid #d4af37; padding: 25px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
-        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; box-sizing: border-box; margin-top: 10px; resize: none; min-height: 120px; }
-        #compteur { font-size: 0.75em; color: #aaa; text-align: right; margin-top: 5px; }
+        .empreinte-box { border: 1px solid #d4af37; padding: 20px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
+        textarea, input[type="email"] { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; box-sizing: border-box; margin-top: 10px; font-family: sans-serif; }
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
         button:disabled { background-color: #555; cursor: not-allowed; }
     </style>
@@ -21,51 +20,61 @@
     <div class="container">
         <h1>Votre Analyse Signature</h1>
         <form id="quizForm">
+            <!-- (Ici tes 7 questions QCM déjà faites) -->
             <div class="question"><p>1. Face à un conflit, vous privilégiez :</p>
                 <input type="radio" name="q1" value="Apaisement" required> L'apaisement <input type="radio" name="q1" value="Confrontation"> La confrontation <input type="radio" name="q1" value="Recul"> Le recul</div>
-            <div class="question"><p>2. Votre énergie se recharge :</p>
-                <input type="radio" name="q2" value="Calme" required> Seul <input type="radio" name="q2" value="Groupe"> En groupe <input type="radio" name="q2" value="Tête-à-tête"> En tête-à-tête</div>
-            <!-- (Répéter pour q3 à q7 avec tes questions précédentes) -->
-            
+            <!-- ... ajoute les questions 2 à 7 ici ... -->
+
             <div class="empreinte-box">
                 <div style="color:#d4af37; font-weight:bold;">🖋️ L’Empreinte de l’Esprit</div>
-                <p style="font-size:0.8em; color:#ccc;">Déposez ici une passion ou réflexion (50-500 car.).</p>
-                <textarea id="texteLibre" placeholder="Écrivez ici..."></textarea>
-                <div id="compteur">0 / 500 caractères</div>
+                <textarea id="texteLibre" placeholder="Une passion, une réflexion (50-500 car.)..." required></textarea>
             </div>
-            <button type="button" id="submitBtn" onclick="validerTest()">✨ RECEVOIR MON ANALYSE</button>
+
+            <div style="margin-top:20px;">
+                <p style="color:#d4af37; font-weight:bold;">📧 Votre e-mail pour l'envoi :</p>
+                <input type="email" id="emailClient" placeholder="exemple@mail.com" required>
+            </div>
+
+            <button type="button" id="submitBtn" onclick="lancerAnalyse()">✨ GÉNÉRER MES 15 PARAGRAPHES</button>
         </form>
     </div>
 
+    <!-- ON CHARGE LES DEUX CERVEAUX -->
+    <script src="ia-analyse.js"></script>
+    <script src="envoi-mail.js"></script>
+
     <script>
-        const textarea = document.getElementById('texteLibre');
-        textarea.addEventListener('input', () => {
-            document.getElementById('compteur').innerText = textarea.value.length + " / 500 caractères";
-        });
+    async function lancerAnalyse() {
+        const form = document.getElementById('quizForm');
+        const email = document.getElementById('emailClient').value;
+        const texte = document.getElementById('texteLibre').value;
 
-        async function validerTest() {
-            const form = document.getElementById('quizForm');
-            const texte = textarea.value.trim();
-            if (!form.checkValidity() || texte.length < 50 || texte.length > 500) {
-                alert("Merci de répondre aux 7 questions et de rédiger au moins 50 caractères.");
-                return;
-            }
-
-            document.getElementById('submitBtn').innerHTML = "🌘 Analyse en cours...";
-            document.getElementById('submitBtn').disabled = true;
-
-            const reponses = { q1: form.q1.value, q2: form.q2.value /* ... ajouter q3-q7 */ };
-            
-            // Appel à l'IA (On suppose que ia-analyse.js est chargé ou accessible via API)
-            console.log("Données prêtes :", localStorage.getItem('user_genre'), localStorage.getItem('user_age'), reponses, texte);
-            
-            setTimeout(() => {
-                alert("Analyse générée avec succès !");
-                window.location.href = "parrainage.html";
-            }, 4000);
+        if (!form.checkValidity() || texte.length < 50) {
+            alert("Merci de remplir tous les champs (7 questions + texte de 50 car. + email).");
+            return;
         }
+
+        const btn = document.getElementById('submitBtn');
+        btn.innerHTML = "🌘 Analyse et Envoi en cours...";
+        btn.disabled = true;
+
+        const reponses = { q1: form.q1.value /* ... récupère q1 à q7 */ };
+
+        // 1. L'IA RÉDIGE
+        const analyse = await genererAnalyse(reponses, texte);
+        
+        // 2. LE FACTEUR ENVOIE
+        const succes = await envoyerAnalyseParMail(email, analyse);
+
+        if (succes) {
+            alert("Félicitations ! Votre analyse est dans votre boîte mail.");
+            window.location.href = "parrainage.html";
+        } else {
+            alert("Erreur lors de l'envoi. Vérifiez vos clés API sur Railway.");
+            btn.disabled = false;
+            btn.innerHTML = "RÉESSAYER";
+        }
+    }
     </script>
 </body>
-</
-
-html>
+</html>
