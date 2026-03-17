@@ -7,70 +7,52 @@
         body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; text-align: center; padding: 50px; }
         h1 { color: #d4af37; font-size: 3em; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
         .container { background-color: #3d3d3d; padding: 30px; border-radius: 15px; border: 2px solid #d4af37; display: inline-block; box-shadow: 0px 10px 30px rgba(0,0,0,0.5); max-width: 800px; }
-        
-        /* Style pour le nouveau texte conceptuel */
         .concept-text { margin: 30px auto; padding: 20px; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37; max-width: 650px; line-height: 1.6; }
         .concept-title { color: #d4af37; font-size: 1.4em; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
         .concept-body { font-style: italic; font-size: 0.95em; color: #ccc; }
-
         select, input { margin: 10px; padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #2c2c2c; color: white; }
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
         button:hover { background-color: #f1c40f; transform: scale(1.05); }
-        .testimonials { margin-top: 50px; display: flex; justify-content: space-around; gap: 20px; flex-wrap: wrap; }
-        .testi-card { flex: 1; min-width: 200px; background: #333; padding: 20px; border-radius: 10px; border: 1px solid #d4af37; font-size: 0.85em; text-align: left; }
-        .stars { color: #d4af37; font-size: 1.2em; margin-bottom: 10px; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Derrière le Masque</h1>
-        
-        <!-- TON NOUVEAU TEXTE STRATÉGIQUE -->
         <div class="concept-text">
             <div class="concept-title">🎭 L'Empreinte de l'Esprit : Votre Signature Unique</div>
             <div class="concept-body">
-                « Un test classique ne capture qu'une silhouette. Pour révéler l'âme, il faut le verbe. <br><br>
-                Grâce au <strong>Context Loading</strong>, notre IA fusionne votre structure psychologique avec les nuances de votre esprit. Que vous déposiez ici une <strong>passion</strong> qui vous anime, une <strong>réflexion</strong> profonde ou une <strong>ambition</strong> précise, l'algorithme s'en saisit comme d'une matière vivante.<br><br>
-                Chaque mot que vous confiez ajuste la précision de l'analyse. Ce texte libre rend votre profil <strong>unique au monde</strong> : il n'est plus une statistique, mais votre miroir exact à cet instant précis. »
+                « Grâce au <strong>Context Loading</strong>, notre IA fusionne votre structure psychologique avec les nuances de votre esprit. Que vous déposiez ici une passion, une réflexion ou une ambition, l'algorithme s'en saisit comme d'une matière vivante. »
             </div>
         </div>
         
-        <form action="paiement.html">
+        <form id="startForm">
             <p>Dites-nous qui vous êtes :</p>
-            <input type="radio" name="genre" value="homme" required> Homme
-            <input type="radio" name="genre" value="femme" required> Femme
+            <input type="radio" name="genre" value="Homme" required> Homme
+            <input type="radio" name="genre" value="Femme" required> Femme
             <br><br>
             <label>Votre âge :</label>
-            <select name="age" required>
+            <select id="ageSelect" required>
                 <option value="">-- Choisir votre âge --</option>
-                <option>18-25 ans</option>
-                <option>26-40 ans</option>
-                <option>41-50 ans</option>
-                <option>50+ ans</option>
+                <option value="18-25">18-25 ans</option>
+                <option value="26-40">26-40 ans</option>
+                <option value="41-50">41-50 ans</option>
+                <option value="50+">50+ ans</option>
             </select>
             <br>
-            <button type="submit">Accéder à l'analyse (15€)</button>
+            <button type="button" onclick="demarrerTest()">Accéder à l'analyse (15€)</button>
         </form>
-
-        <div class="testimonials">
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"Analyse bluffante en 7 questions. Une vraie clé pour comprendre mes réactions."</p>
-                <p><strong>— Sarah M., 34 ans</strong></p>
-            </div>
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"Le profil 'Chasseur de tête' est un investissement largement rentabilisé."</p>
-                <p><strong>— Marc D., 45 ans</strong></p>
-            </div>
-            <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p>"Concept génial. J'ai parrainé mes collègues et déjà remboursé mon test."</p>
-                <p><strong>— Julie L., 28 ans</strong></p>
-            </div>
-        </div>
     </div>
-</body>
-</
 
-html>
+    <script>
+    function demarrerTest() {
+        const genre = document.querySelector('input[name="genre"]:checked')?.value;
+        const age = document.getElementById('ageSelect').value;
+        if (!genre || !age) { alert("Merci de préciser votre profil."); return; }
+        
+        localStorage.setItem('user_genre', genre);
+        localStorage.setItem('user_age', age);
+        window.location.href = "paiement.html";
+    }
+    </script>
+</body>
+</html>
