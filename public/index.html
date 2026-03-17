@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Derrière le Masque</title>
     <style>
         body { background-color: #2c2c2c; color: #ffffff; font-family: 'Georgia', serif; text-align: center; padding: 50px; }
@@ -10,7 +11,8 @@
         .concept-text { margin: 30px auto; padding: 20px; border-top: 1px solid #d4af37; border-bottom: 1px solid #d4af37; max-width: 650px; line-height: 1.6; }
         .concept-title { color: #d4af37; font-size: 1.4em; font-weight: bold; margin-bottom: 15px; text-transform: uppercase; }
         .concept-body { font-style: italic; font-size: 0.95em; color: #ccc; }
-        select, input { margin: 10px; padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #2c2c2c; color: white; }
+        select, input[type="radio"] { margin: 10px; cursor: pointer; }
+        select { padding: 10px; border-radius: 5px; border: 1px solid #d4af37; background: #2c2c2c; color: white; }
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; margin-top: 20px; transition: 0.3s; }
         button:hover { background-color: #f1c40f; transform: scale(1.05); }
     </style>
@@ -18,24 +20,23 @@
 <body>
     <div class="container">
         <h1>Derrière le Masque</h1>
-<!-- SOUS-TITRE ÉLÉGANT -->
-<p style="color: #d4af37; font-size: 1.1em; letter-spacing: 3px; text-transform: uppercase; margin-top: -10px; margin-bottom: 30px; font-weight: 300;">
-    Test psychologique <span style="color: #aaa; font-size: 0.8em; text-transform: none; letter-spacing: 1px;">— à l'instant présent</span>
-</p>
+        <p style="color: #d4af37; font-size: 1.1em; letter-spacing: 3px; text-transform: uppercase; margin-top: -10px; margin-bottom: 30px; font-weight: 300;">
+            Test psychologique <span style="color: #aaa; font-size: 0.8em; text-transform: none; letter-spacing: 1px;">— à l'instant présent</span>
+        </p>
 
         <div class="concept-text">
             <div class="concept-title">🎭 L'Empreinte de l'Esprit : Votre Signature Unique</div>
             <div class="concept-body">
-                « Grâce au <strong>Context Loading</strong>, notre IA fusionne votre structure psychologique avec les nuances de votre esprit. Que vous déposiez ici une passion, une réflexion ou une ambition, l'algorithme s'en saisit comme d'une matière vivante. »
+                « Grâce au <strong>Context Loading</strong>, notre IA fusionne votre structure psychologique avec les nuances de votre esprit. »
             </div>
         </div>
         
         <form id="startForm">
             <p>Dites-nous qui vous êtes :</p>
-            <input type="radio" name="genre" value="Homme" required> Homme
-            <input type="radio" name="genre" value="Femme" required> Femme
+            <label><input type="radio" name="genre" value="Homme" required> Homme</label>
+            <label><input type="radio" name="genre" value="Femme" required> Femme</label>
             <br><br>
-            <label>Votre âge :</label>
+            <label for="ageSelect">Votre âge :</label>
             <select id="ageSelect" required>
                 <option value="">-- Choisir votre âge --</option>
                 <option value="18-25">18-25 ans</option>
@@ -52,12 +53,20 @@
     function demarrerTest() {
         const genre = document.querySelector('input[name="genre"]:checked')?.value;
         const age = document.getElementById('ageSelect').value;
-        if (!genre || !age) { alert("Merci de préciser votre profil."); return; }
+        
+        if (!genre || !age) { 
+            alert("Merci de préciser votre profil."); 
+            return; 
+        }
         
         localStorage.setItem('user_genre', genre);
         localStorage.setItem('user_age', age);
+        
+        // Redirection vers le fichier suivant
         window.location.href = "paiement.html";
     }
     </script>
 </body>
-</html>
+</
+
+html>
