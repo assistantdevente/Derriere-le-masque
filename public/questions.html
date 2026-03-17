@@ -11,22 +11,20 @@
         .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
         input[type="radio"] { margin-right: 10px; accent-color: #d4af37; cursor: pointer; }
         
-        /* Section Empreinte de l'Esprit */
         .empreinte-box { border: 1px solid #d4af37; padding: 25px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
         .empreinte-title { color: #d4af37; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; resize: none; transition: 0.3s; }
+        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; resize: none; min-height: 120px; transition: 0.3s; }
         textarea:focus { border-color: #d4af37; outline: none; }
         #compteur { font-size: 0.75em; color: #aaa; text-align: right; margin-top: 5px; }
         
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
         button:hover { background-color: #f1c40f; transform: scale(1.02); }
-        button:disabled { background-color: #555; color: #888; cursor: not-allowed; transform: none; }
+        button:disabled { background-color: #555; color: #888; cursor: not-allowed; }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Votre Analyse Signature</h1>
-        
         <form id="quizForm">
             <!-- Questions 1 à 7 -->
             <div class="question"><p>1. Face à un conflit, vous privilégiez :</p>
@@ -64,14 +62,14 @@
                 <input type="radio" name="q7" value="B"> Votre vision d'ensemble et stratégique <br>
                 <input type="radio" name="q7" value="C"> Votre capacité à fédérer les gens autour de vous</div>
 
-            <!-- BLOC TEXTE LIBRE : L'EMPREINTE DE L'ESPRIT -->
+            <!-- BLOC EMPREINTE DE L'ESPRIT -->
             <div class="empreinte-box">
                 <div class="empreinte-title">🖋️ L’Empreinte de l’Esprit</div>
                 <p style="font-size: 0.85em; color: #ccc; font-style: italic;">
-                    Déposez ici une passion, une réflexion ou une ambition (max 500 caract.). 
+                    Déposez ici une passion, une réflexion ou une ambition (50 à 500 caractères). 
                     L'IA fusionnera vos mots pour une analyse <strong>unique au monde</strong>.
                 </p>
-                <textarea id="texteLibre" rows="5" placeholder="Écrivez librement ce qui occupe votre esprit..."></textarea>
+                <textarea id="texteLibre" placeholder="Écrivez ici ce qui occupe votre esprit actuellement..."></textarea>
                 <div id="compteur">0 / 500 caractères</div>
             </div>
 
@@ -80,55 +78,42 @@
     </div>
 
     <script>
-        // Gestion du compteur de caractères en temps réel
         const textarea = document.getElementById('texteLibre');
         const compteur = document.getElementById('compteur');
 
         textarea.addEventListener('input', function() {
             const longueur = this.value.length;
             compteur.innerText = longueur + " / 500 caractères";
-            if (longueur > 500) {
+            if (longueur > 500 || (longueur > 0 && longueur < 50)) {
                 compteur.style.color = "#ff4d4d";
-                compteur.style.fontWeight = "bold";
             } else {
                 compteur.style.color = "#aaa";
-                compteur.style.fontWeight = "normal";
             }
         });
 
         async function validerTest() {
             const form = document.getElementById('quizForm');
-            const texteLibre = textarea.value.trim();
+            const texte = textarea.value.trim();
             const btn = document.getElementById('submitBtn');
 
-            // Vérifications
             if (!form.checkValidity()) {
-                alert("Merci de répondre aux 7 questions structurelles.");
+                alert("Merci de répondre aux 7 questions.");
                 return;
             }
-            if (texteLibre.length < 10) {
-                alert("Pour une précision chirurgicale, déposez votre 'Empreinte de l'Esprit' (minimum 10 caractères).");
+            if (texte.length < 50) {
+                alert("Votre 'Empreinte' est trop courte (minimum 50 caractères). Quelques phrases suffisent.");
                 return;
             }
-            if (texteLibre.length > 500) {
-                alert("Votre empreinte dépasse 500 caractères. Merci de la condenser pour une analyse plus percutante.");
+            if (texte.length > 500) {
+                alert("Merci de condenser votre texte (maximum 500 caractères).");
                 return;
             }
 
-            // Lancement de l'analyse
             btn.innerHTML = "🌘 Analyse de votre âme en cours...";
             btn.disabled = true;
 
-            const reponses = {
-                q1: form.q1.value, q2: form.q2.value, q3: form.q3.value,
-                q4: form.q4.value, q5: form.q5.value, q6: form.q6.value, q7: form.q7.value
-            };
-
-            // Simulation du traitement IA (on pourra lier au script réel après)
-            console.log("Envoi au Cerveau IA...", { reponses, texteLibre });
-
             setTimeout(() => {
-                alert("Félicitations ! Votre profil de 15 paragraphes a été généré. Consultez votre boîte mail d'ici quelques instants.");
+                alert("Félicitations ! Votre profil personnalisé est prêt. Consultez votre boîte mail.");
                 window.location.href = "parrainage.html";
             }, 4000);
         }
