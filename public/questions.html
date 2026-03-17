@@ -9,117 +9,129 @@
         h1 { color: #d4af37; text-align: center; text-transform: uppercase; font-size: 1.8em; margin-bottom: 30px; }
         .question { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 15px; text-align: left; }
         .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
-        input[type="radio"] { margin-right: 10px; accent-color: #d4af37; }
+        input[type="radio"] { margin-right: 10px; accent-color: #d4af37; cursor: pointer; }
         
-        /* Style spécial pour l'Empreinte de l'Esprit */
+        /* Section Empreinte de l'Esprit */
         .empreinte-box { border: 1px solid #d4af37; padding: 25px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
         .empreinte-title { color: #d4af37; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
-        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 15px; resize: vertical; }
+        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 10px; resize: none; transition: 0.3s; }
+        textarea:focus { border-color: #d4af37; outline: none; }
+        #compteur { font-size: 0.75em; color: #aaa; text-align: right; margin-top: 5px; }
         
         button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
         button:hover { background-color: #f1c40f; transform: scale(1.02); }
+        button:disabled { background-color: #555; color: #888; cursor: not-allowed; transform: none; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Votre Analyse (7 Questions)</h1>
+        <h1>Votre Analyse Signature</h1>
         
         <form id="quizForm">
             <!-- Questions 1 à 7 -->
-            <div class="question">
-                <p>1. Face à un conflit, vous privilégiez :</p>
+            <div class="question"><p>1. Face à un conflit, vous privilégiez :</p>
                 <input type="radio" name="q1" value="A" required> L'apaisement et la médiation <br>
                 <input type="radio" name="q1" value="B"> La confrontation franche et directe <br>
-                <input type="radio" name="q1" value="C"> Le recul pour analyser la situation
-            </div>
+                <input type="radio" name="q1" value="C"> Le recul pour analyser la situation</div>
 
-            <div class="question">
-                <p>2. Votre énergie se recharge plutôt :</p>
+            <div class="question"><p>2. Votre énergie se recharge plutôt :</p>
                 <input type="radio" name="q2" value="A" required> Dans le calme et la solitude <br>
                 <input type="radio" name="q2" value="B"> Au contact d'un groupe dynamique <br>
-                <input type="radio" name="q2" value="C"> Lors d'échanges profonds en tête-à-tête
-            </div>
+                <input type="radio" name="q2" value="C"> Lors d'échanges profonds en tête-à-tête</div>
 
-            <div class="question">
-                <p>3. Pour prendre une décision importante :</p>
+            <div class="question"><p>3. Pour prendre une décision importante :</p>
                 <input type="radio" name="q3" value="A" required> Vous suivez votre intuition profonde <br>
                 <input type="radio" name="q3" value="B"> Vous analysez les faits et les chiffres <br>
-                <input type="radio" name="q3" value="C"> Vous demandez l'avis de personnes de confiance
-            </div>
+                <input type="radio" name="q3" value="C"> Vous demandez l'avis de personnes de confiance</div>
 
-            <div class="question">
-                <p>4. Dans votre travail, vous êtes :</p>
+            <div class="question"><p>4. Dans votre travail, vous êtes :</p>
                 <input type="radio" name="q4" value="A" required> Très organisé, tout est planifié <br>
                 <input type="radio" name="q4" value="B"> Adaptable, vous gérez l'imprévu avec brio <br>
-                <input type="radio" name="q4" value="C"> Créatif, vous cherchez de nouvelles méthodes
-            </div>
+                <input type="radio" name="q4" value="C"> Créatif, vous cherchez de nouvelles méthodes</div>
 
-            <div class="question">
-                <p>5. On dit souvent de vous que vous êtes :</p>
+            <div class="question"><p>5. On dit souvent de vous que vous êtes :</p>
                 <input type="radio" name="q5" value="A" required> Un idéaliste tourné vers l'avenir <br>
                 <input type="radio" name="q5" value="B"> Un réaliste pragmatique et efficace <br>
-                <input type="radio" name="q5" value="C"> Un observateur attentif et réfléchi
-            </div>
+                <input type="radio" name="q5" value="C"> Un observateur attentif et réfléchi</div>
 
-            <div class="question">
-                <p>6. Face au changement, votre premier réflexe est :</p>
+            <div class="question"><p>6. Face au changement, votre premier réflexe est :</p>
                 <input type="radio" name="q6" value="A" required> L'excitation et l'envie d'essayer <br>
                 <input type="radio" name="q6" value="B"> L'observation prudente avant d'agir <br>
-                <input type="radio" name="q6" value="C"> La recherche d'un plan pour s'adapter
-            </div>
+                <input type="radio" name="q6" value="C"> La recherche d'un plan pour s'adapter</div>
 
-            <div class="question">
-                <p>7. Ce qui vous définit le mieux est :</p>
+            <div class="question"><p>7. Ce qui vous définit le mieux est :</p>
                 <input type="radio" name="q7" value="A" required> Votre souci du détail et de la précision <br>
                 <input type="radio" name="q7" value="B"> Votre vision d'ensemble et stratégique <br>
-                <input type="radio" name="q7" value="C"> Votre capacité à fédérer les gens autour de vous
-            </div>
+                <input type="radio" name="q7" value="C"> Votre capacité à fédérer les gens autour de vous</div>
 
             <!-- BLOC TEXTE LIBRE : L'EMPREINTE DE L'ESPRIT -->
             <div class="empreinte-box">
                 <div class="empreinte-title">🖋️ L’Empreinte de l’Esprit</div>
                 <p style="font-size: 0.85em; color: #ccc; font-style: italic;">
-                    Déposez ici une passion, une réflexion profonde ou une ambition. 
-                    Ce texte permettra à l'IA d'ajuster chaque paragraphe à votre réalité immédiate, 
-                    rendant votre profil <strong>unique au monde</strong>.
+                    Déposez ici une passion, une réflexion ou une ambition (max 500 caract.). 
+                    L'IA fusionnera vos mots pour une analyse <strong>unique au monde</strong>.
                 </p>
-<textarea id="texteLibre" rows="5" placeholder="Écrivez librement ce qui occupe votre esprit..." required></textarea>
+                <textarea id="texteLibre" rows="5" placeholder="Écrivez librement ce qui occupe votre esprit..."></textarea>
+                <div id="compteur">0 / 500 caractères</div>
             </div>
 
-            <button type="button" onclick="validerTest()">✨ RECEVOIR MON ANALYSE COMPLÈTE</button>
+            <button type="button" id="submitBtn" onclick="validerTest()">✨ RECEVOIR MON ANALYSE COMPLÈTE</button>
         </form>
     </div>
 
     <script>
+        // Gestion du compteur de caractères en temps réel
+        const textarea = document.getElementById('texteLibre');
+        const compteur = document.getElementById('compteur');
+
+        textarea.addEventListener('input', function() {
+            const longueur = this.value.length;
+            compteur.innerText = longueur + " / 500 caractères";
+            if (longueur > 500) {
+                compteur.style.color = "#ff4d4d";
+                compteur.style.fontWeight = "bold";
+            } else {
+                compteur.style.color = "#aaa";
+                compteur.style.fontWeight = "normal";
+            }
+        });
+
         async function validerTest() {
-    const form = document.getElementById('quizForm');
-    const texteLibre = document.getElementById('texteLibre').value;
+            const form = document.getElementById('quizForm');
+            const texteLibre = textarea.value.trim();
+            const btn = document.getElementById('submitBtn');
 
-    // On vérifie que les 7 questions ET le texte libre sont remplis
-    if (!form.checkValidity() || texteLibre.trim().length < 10) {
-        alert("Pour une précision chirurgicale, merci de répondre aux 7 questions et de déposer votre 'Empreinte de l'Esprit' (minimum 10 caractères).");
-        return;
-    }
+            // Vérifications
+            if (!form.checkValidity()) {
+                alert("Merci de répondre aux 7 questions structurelles.");
+                return;
+            }
+            if (texteLibre.length < 10) {
+                alert("Pour une précision chirurgicale, déposez votre 'Empreinte de l'Esprit' (minimum 10 caractères).");
+                return;
+            }
+            if (texteLibre.length > 500) {
+                alert("Votre empreinte dépasse 500 caractères. Merci de la condenser pour une analyse plus percutante.");
+                return;
+            }
 
-    const btn = document.querySelector('button');
-    btn.innerHTML = "🌘 Analyse de votre âme en cours...";
-    btn.disabled = true;
+            // Lancement de l'analyse
+            btn.innerHTML = "🌘 Analyse de votre âme en cours...";
+            btn.disabled = true;
 
-    // On prépare les données pour l'IA
-    const reponses = {
-        q1: form.q1.value, q2: form.q2.value, q3: form.q3.value,
-        q4: form.q4.value, q5: form.q5.value, q6: form.q6.value, q7: form.q7.value
-    };
+            const reponses = {
+                q1: form.q1.value, q2: form.q2.value, q3: form.q3.value,
+                q4: form.q4.value, q5: form.q5.value, q6: form.q6.value, q7: form.q7.value
+            };
 
-    // MAGIE : On appelle le cerveau IA avec les questions + le texte libre
-    console.log("Envoi à l'IA...", reponses, texteLibre);
-    
-    // Pour ton test actuel, on simule la réussite
-    setTimeout(() => {
-        alert("Félicitations ! Votre analyse personnalisée de 15 paragraphes est en cours de génération. Elle arrive dans votre boîte mail.");
-        window.location.href = "parrainage.html";
-    }, 4000);
-}
+            // Simulation du traitement IA (on pourra lier au script réel après)
+            console.log("Envoi au Cerveau IA...", { reponses, texteLibre });
+
+            setTimeout(() => {
+                alert("Félicitations ! Votre profil de 15 paragraphes a été généré. Consultez votre boîte mail d'ici quelques instants.");
+                window.location.href = "parrainage.html";
+            }, 4000);
+        }
     </script>
 </body>
 </html>
