@@ -10,7 +10,13 @@
         .question { margin-bottom: 25px; border-bottom: 1px solid #555; padding-bottom: 15px; text-align: left; }
         .question p { font-size: 1.1em; margin-bottom: 10px; font-weight: bold; }
         input[type="radio"] { margin-right: 10px; accent-color: #d4af37; }
-        button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 15px 30px; font-size: 1.1em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
+        
+        /* Style spécial pour l'Empreinte de l'Esprit */
+        .empreinte-box { border: 1px solid #d4af37; padding: 25px; background: rgba(212, 175, 55, 0.05); border-radius: 10px; margin-top: 30px; }
+        .empreinte-title { color: #d4af37; font-size: 1.2em; font-weight: bold; margin-bottom: 10px; text-transform: uppercase; }
+        textarea { width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; border-radius: 5px; padding: 12px; font-family: sans-serif; box-sizing: border-box; margin-top: 15px; resize: vertical; }
+        
+        button { background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px 30px; font-size: 1.2em; font-weight: bold; border-radius: 5px; cursor: pointer; display: block; width: 100%; margin-top: 30px; transition: 0.3s; }
         button:hover { background-color: #f1c40f; transform: scale(1.02); }
     </style>
 </head>
@@ -19,56 +25,68 @@
         <h1>Votre Analyse (7 Questions)</h1>
         
         <form id="quizForm">
+            <!-- Questions 1 à 7 -->
             <div class="question">
                 <p>1. Face à un conflit, vous privilégiez :</p>
-                <input type="radio" name="q1" required> L'apaisement et la médiation <br>
-                <input type="radio" name="q1"> La confrontation franche et directe <br>
-                <input type="radio" name="q1"> Le recul pour analyser la situation
+                <input type="radio" name="q1" value="A" required> L'apaisement et la médiation <br>
+                <input type="radio" name="q1" value="B"> La confrontation franche et directe <br>
+                <input type="radio" name="q1" value="C"> Le recul pour analyser la situation
             </div>
 
             <div class="question">
                 <p>2. Votre énergie se recharge plutôt :</p>
-                <input type="radio" name="q2" required> Dans le calme et la solitude <br>
-                <input type="radio" name="q2"> Au contact d'un groupe dynamique <br>
-                <input type="radio" name="q2"> Lors d'échanges profonds en tête-à-tête
+                <input type="radio" name="q2" value="A" required> Dans le calme et la solitude <br>
+                <input type="radio" name="q2" value="B"> Au contact d'un groupe dynamique <br>
+                <input type="radio" name="q2" value="C"> Lors d'échanges profonds en tête-à-tête
             </div>
 
             <div class="question">
                 <p>3. Pour prendre une décision importante :</p>
-                <input type="radio" name="q3" required> Vous suivez votre intuition profonde <br>
-                <input type="radio" name="q3"> Vous analysez les faits et les chiffres <br>
-                <input type="radio" name="q3"> Vous demandez l'avis de personnes de confiance
+                <input type="radio" name="q3" value="A" required> Vous suivez votre intuition profonde <br>
+                <input type="radio" name="q3" value="B"> Vous analysez les faits et les chiffres <br>
+                <input type="radio" name="q3" value="C"> Vous demandez l'avis de personnes de confiance
             </div>
 
             <div class="question">
                 <p>4. Dans votre travail, vous êtes :</p>
-                <input type="radio" name="q4" required> Très organisé, tout est planifié <br>
-                <input type="radio" name="q4"> Adaptable, vous gérez l'imprévu avec brio <br>
-                <input type="radio" name="q4"> Créatif, vous cherchez de nouvelles méthodes
+                <input type="radio" name="q4" value="A" required> Très organisé, tout est planifié <br>
+                <input type="radio" name="q4" value="B"> Adaptable, vous gérez l'imprévu avec brio <br>
+                <input type="radio" name="q4" value="C"> Créatif, vous cherchez de nouvelles méthodes
             </div>
 
             <div class="question">
                 <p>5. On dit souvent de vous que vous êtes :</p>
-                <input type="radio" name="q5" required> Un idéaliste tourné vers l'avenir <br>
-                <input type="radio" name="q5"> Un réaliste pragmatique et efficace <br>
-                <input type="radio" name="q5"> Un observateur attentif et réfléchi
+                <input type="radio" name="q5" value="A" required> Un idéaliste tourné vers l'avenir <br>
+                <input type="radio" name="q5" value="B"> Un réaliste pragmatique et efficace <br>
+                <input type="radio" name="q5" value="C"> Un observateur attentif et réfléchi
             </div>
 
             <div class="question">
                 <p>6. Face au changement, votre premier réflexe est :</p>
-                <input type="radio" name="q6" required> L'excitation et l'envie d'essayer <br>
-                <input type="radio" name="q6"> L'observation prudente avant d'agir <br>
-                <input type="radio" name="q6"> La recherche d'un plan pour s'adapter
+                <input type="radio" name="q6" value="A" required> L'excitation et l'envie d'essayer <br>
+                <input type="radio" name="q6" value="B"> L'observation prudente avant d'agir <br>
+                <input type="radio" name="q6" value="C"> La recherche d'un plan pour s'adapter
             </div>
 
             <div class="question">
                 <p>7. Ce qui vous définit le mieux est :</p>
-                <input type="radio" name="q7" required> Votre souci du détail et de la précision <br>
-                <input type="radio" name="q7"> Votre vision d'ensemble et stratégique <br>
-                <input type="radio" name="q7"> Votre capacité à fédérer les gens autour de vous
+                <input type="radio" name="q7" value="A" required> Votre souci du détail et de la précision <br>
+                <input type="radio" name="q7" value="B"> Votre vision d'ensemble et stratégique <br>
+                <input type="radio" name="q7" value="C"> Votre capacité à fédérer les gens autour de vous
             </div>
 
-            <button type="button" onclick="validerTest()">Recevoir mon analyse complète</button>
+            <!-- BLOC TEXTE LIBRE : L'EMPREINTE DE L'ESPRIT -->
+            <div class="empreinte-box">
+                <div class="empreinte-title">🖋️ L’Empreinte de l’Esprit</div>
+                <p style="font-size: 0.85em; color: #ccc; font-style: italic;">
+                    Déposez ici une passion, une réflexion profonde ou une ambition. 
+                    Ce texte permettra à l'IA d'ajuster chaque paragraphe à votre réalité immédiate, 
+                    rendant votre profil <strong>unique au monde</strong>.
+                </p>
+                <textarea id="texteLibre" rows="5" placeholder="Écrivez librement ce qui occupe votre esprit..."></textarea>
+            </div>
+
+            <button type="button" onclick="validerTest()">✨ RECEVOIR MON ANALYSE COMPLÈTE</button>
         </form>
     </div>
 
@@ -76,11 +94,17 @@
         function validerTest() {
             const form = document.getElementById('quizForm');
             if (form.checkValidity()) {
-                alert('Félicitations ! Vos 15 paragraphes personnalisés sont en cours de génération et seront envoyés à votre e-mail.');
-                // Ici, on redirigera vers la page de succès ou l'accueil
-                window.location.href = "index.html";
+                const btn = document.querySelector('button');
+                btn.innerHTML = "🌘 Analyse de votre âme en cours...";
+                btn.disabled = true;
+
+                // On simule l'envoi des données (IA + Mailjet suivront)
+                setTimeout(() => {
+                    alert('Félicitations ! Votre empreinte est enregistrée. Les 15 paragraphes sont en cours de génération.');
+                    window.location.href = "index.html";
+                }, 3000);
             } else {
-                alert('Veuillez répondre à toutes les questions avant de valider.');
+                alert('Veuillez répondre aux 7 questions pour finaliser votre profil.');
             }
         }
     </script>
