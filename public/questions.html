@@ -1,58 +1,82 @@
-<!-- (Tes questions 1 à 7 et l'Empreinte de l'Esprit sont juste au-dessus) -->
-
-<!-- 1. CHAMP EMAIL (Juste avant le bouton) -->
-<div style="margin-top: 20px; border-top: 1px solid #d4af37; padding-top: 20px;">
-    <p style="color: #d4af37; font-weight: bold;">📧 Adresse e-mail pour l'envoi :</p>
+<!-- 1. CHAMP EMAIL -->
+<div style="margin-top: 20px; border-top: 1px solid #d4af37; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 10px;">
+    <p style="color: #d4af37; font-weight: bold; margin-top: 0;">📧 Adresse e-mail de réception :</p>
     <input type="email" id="emailClient" placeholder="votre@mail.com" required 
-           style="width: 100%; background: #2c2c2c; color: white; border: 1px solid #555; padding: 12px; border-radius: 5px; box-sizing: border-box;">
+           style="width: 100%; max-width: 100%; background: #2c2c2c; color: white; border: 1px solid #d4af37; padding: 15px; border-radius: 5px; box-sizing: border-box; font-size: 1rem;">
+    <p style="font-size: 0.75em; color: #aaa; margin-top: 8px;">C'est ici que vous recevrez vos 15 paragraphes d'analyse.</p>
 </div>
 
-<button type="button" id="btnSubmit" onclick="lancerTout()">✨ RÉVÉLER MON ANALYSE</button>
+<!-- BOUTON D'ACTION -->
+<button type="button" id="btnSubmit" onclick="lancerTout()" 
+        style="width: 100%; background-color: #d4af37; color: #2c2c2c; border: none; padding: 20px; font-size: 1.2em; font-weight: bold; border-radius: 8px; cursor: pointer; margin-top: 20px; transition: 0.3s; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+    ✨ RÉVÉLER MON ANALYSE
+</button>
 
-<!-- 2. APPEL AUX SCRIPTS (Indispensable !) -->
+<!-- 2. APPEL AUX SCRIPTS -->
 <script src="ia-analyse.js"></script>
 <script src="envoi-mail.js"></script>
 
 <script>
 async function lancerTout() {
     const form = document.getElementById('quizForm');
-    const email = document.getElementById('emailClient').value;
-    const texte = document.getElementById('texteLibre').value;
+    const emailInput = document.getElementById('emailClient');
+    const email = emailInput.value;
+    const texteArea = document.getElementById('texteLibre');
+    const texte = texteArea ? texteArea.value : "";
 
-    // Sécurité : On vérifie que tout est rempli
-    if (!form.checkValidity() || texte.length < 50) {
-        alert("Merci de compléter tout le formulaire (Questions + Texte + Email).");
+    // Validation simple
+    if (!email.includes('@') || !email.includes('.')) {
+        alert("Merci de saisir une adresse email valide.");
+        emailInput.focus();
         return;
     }
 
-    // Effet visuel de prestige
+    if (texte.length < 50) {
+        alert("Votre texte 'Empreinte de l'Esprit' est trop court (min. 50 caractères) pour une analyse de qualité.");
+        if(texteArea) texteArea.focus();
+        return;
+    }
+
+    // Effet visuel
     const btn = document.getElementById('btnSubmit');
+    const texteOriginal = btn.innerHTML;
     btn.innerHTML = "🌘 Analyse et Envoi en cours...";
     btn.disabled = true;
-
-    // Récupération des choix
-    const reponses = {
-        q1: form.q1.value, q2: form.q2.value, q3: form.q3.value,
-        q4: form.q4.value, q5: form.q5.value, q6: form.q6.value, q7: form.q7.value
-    };
+    btn.style.opacity = "0.7";
 
     try {
-        // ÉTAPE A : Le Cerveau IA rédige les 15 paragraphes
+        // Récupération des choix radio (q1 à q7)
+        const reponses = {};
+        for(let i=1; i<=7; i++) {
+            const val = form[`q${i}`]?.value;
+            if(!val) {
+                alert(`Merci de répondre à la question ${i}.`);
+                btn.disabled = false;
+                btn.innerHTML = texteOriginal;
+                btn.style.opacity = "1";
+                return;
+            }
+            reponses[`q${i}`] = val;
+        }
+
+        // ÉTAPE A : IA
         const analyse = await genererAnalyse(reponses, texte);
         
-        // ÉTAPE B : Le Facteur envoie l'email
+        // ÉTAPE B : Mail
         const succes = await envoyerAnalyseParMail(email, analyse);
 
         if (succes) {
-            alert("Succès ! Votre analyse signature est dans votre boîte mail.");
+            alert("Succès ! Votre analyse signature arrive dans votre boîte mail.");
             window.location.href = "parrainage.html";
         } else {
-            throw new Error("Erreur de livraison mail");
+            throw new Error("Erreur mail");
         }
     } catch (e) {
-        alert("Erreur technique. Vérifiez vos clés API sur Railway.");
+        console.error(e);
+        alert("Un problème est survenu. Vérifiez votre connexion ou la configuration serveur.");
         btn.disabled = false;
         btn.innerHTML = "RÉESSAYER";
+        btn.style.opacity = "1";
     }
 }
 </script>
